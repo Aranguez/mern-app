@@ -1,9 +1,6 @@
 import { FC } from "react";
 
-const unusedVariables = "";
-const anotherVariable = "";
-
-const Task: FC<any> = (children) => {
+const Task: FC = (children) => {
   return <li>{children}</li>;
 };
 
