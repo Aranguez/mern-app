@@ -7,8 +7,7 @@
     "start": "webpack serve --hot --open --mode development",
     "server": "nodemon src/backend/server.js",
     "build": "cross-env NODE_ENV=production webpack",
-    "test": "jest",
-    "pretty": "prettier --write --tab-width 6 \"src/**/**/*.tsx\""
+    "test": "jest"
   },
   "author": "Leandro Aranguez",
   "license": "MIT",
@@ -49,5 +48,11 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
     "webpack-livereload-plugin": "^3.0.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "prettier --write"
+    ]
   }
 }
