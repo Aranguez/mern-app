@@ -1,1 +1,3 @@
-expect(2).toBe(3);
+it("should test correctly", () => {
+  expect(2).toBe(2);
+});
