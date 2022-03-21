@@ -8,7 +8,7 @@
     "server": "nodemon src/backend/server.js",
     "build": "cross-env NODE_ENV=production webpack",
     "test": "jest",
-    "pretty": "prettier --write --tab-width 6 \"src/**/*.(js?x | ts?x)\""
+    "pretty": "prettier --write --tab-width 6 \"src/**/**/*.tsx\""
   },
   "author": "Leandro Aranguez",
   "license": "MIT",
