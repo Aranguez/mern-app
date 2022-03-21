@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run prettier --write --tab-width 4 \"src/**/*.js\"
+npm run prettier --write --tab-width 6 \"src/**/*.js\"

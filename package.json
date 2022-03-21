@@ -7,9 +7,7 @@
     "start": "webpack serve --hot --open --mode development",
     "server": "nodemon src/backend/server.js",
     "build": "cross-env NODE_ENV=production webpack",
-    "test": "jest",
-    "pretty": "prettier --write --tab-width 4 \"src/**/*.js\"",
-    "prepare": "husky install"
+    "test": "jest"
   },
   "author": "Leandro Aranguez",
   "license": "MIT",
