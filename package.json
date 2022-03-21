@@ -51,7 +51,7 @@
     "webpack-livereload-plugin": "^3.0.2"
   },
   "lint-staged": {
-    "src/**/*.tsx": [
+    "src/**/*.{js,ts,tsx}": [
       "eslint",
       "prettier --write"
     ]
