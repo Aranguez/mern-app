@@ -1,5 +1,15 @@
-import React from "react";
+import { FC } from "react";
 
-const App: React.FC<void> = () => <div>hello worldd</div>;
+import Header from "./components/Header";
+import TasksList from "./pages/TasksList";
+
+import "./index.scss";
+
+const App: FC = () => (
+  <div className="container">
+    <Header />
+    <TasksList />
+  </div>
+);
 
 export default App;

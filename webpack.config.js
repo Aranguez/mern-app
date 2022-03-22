@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
@@ -23,20 +24,13 @@ if (process.env.NODE_ENV === "production") {
 }
 
 module.exports = {
-  entry: "./src/frontend/index.js",
+  entry: path.resolve(__dirname, "./src/frontend/index.js"),
   mode,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: "src/frontend/public/index.html",
-    }),
-    new LiveReloadPlugin(),
-    new MiniCssExtractPlugin(),
-  ],
+  plugins,
   module: {
     rules: [
       {
@@ -77,7 +71,10 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    modules: [__dirname, "node_modules"],
+    modules: [path.join(__dirname, "node_modules")],
     extensions: [".js", ".jsx", ".tsx", ".ts"],
+  },
+  resolveLoader: {
+    modules: [path.join(__dirname, "node_modules")],
   },
 };
