@@ -9,7 +9,7 @@ const LiveReloadPlugin = require("webpack-livereload-plugin");
 const plugins = [
   new CleanWebpackPlugin(),
   new HtmlWebpackPlugin({
-    template: "src/frontend/public/index.html",
+    template: "public/index.html",
   }),
   new LiveReloadPlugin(),
   new MiniCssExtractPlugin(),
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 module.exports = {
-  entry: path.resolve(__dirname, "./src/frontend/index.js"),
+  entry: path.resolve(__dirname, "./src/index.js"),
   mode,
   output: {
     path: path.resolve(__dirname, "dist"),

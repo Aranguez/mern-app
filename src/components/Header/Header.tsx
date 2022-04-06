@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 const Header: FC = () => {
-  return <div></div>;
+  return <div>perfil</div>;
 };
 
 export default Header;
