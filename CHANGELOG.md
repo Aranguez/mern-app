@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/Aranguez/mern-app/compare/v1.2.0...v1.2.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* **standard-version:** fix mistaken commits url ([8b283de](https://github.com/Aranguez/mern-app/commits/8b283dee879519f59d3a12e0c4c7fb659dc76cae))
+
 ## [1.2.0](https://github.com/mokkapps/changelog-generator-demo/compare/v1.1.0...v1.2.0) (2022-04-07)
 
 
