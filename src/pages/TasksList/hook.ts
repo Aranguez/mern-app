@@ -27,7 +27,8 @@ const useTaskList = () => {
    * @author Leandro Aranguez
    */
   const editTask = (task: Itask) => {
-    console.log("edit", task);
+    return task;
+    // console.log("edit", task);
   };
 
   /**
@@ -36,7 +37,9 @@ const useTaskList = () => {
    * @author Leandro Aranguez
    */
   const deleteTask = (task: Itask) => {
-    console.log("delete", task);
+    return task;
+    // console.log("delete", task);
+    // console.log("delete", task);
   };
 
   return {
