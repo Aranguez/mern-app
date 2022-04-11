@@ -1,55 +1,56 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
-import { Itask } from "../../types/task.model";
+import Menu from "components/Menu";
 
+import { Itask } from "types/task.model";
 import styled from "styled-components";
+import { Draggable } from "react-beautiful-dnd";
+import { useTasks } from "context/tasks-reducer";
+import Input from "components/Input";
 
 type Props = {
   task: Itask;
-  editFn: (elem: Itask) => void;
-  deleteFn: (elem: Itask) => void;
+  index: number;
 };
 
-const Task: FC<Props> = ({ task, editFn, deleteFn }) => {
+const Task: FC<Props> = ({ task, index }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [, dispatch] = useTasks();
+
+  const handleEdit = (newText: string) => {
+    dispatch({ type: "EDIT", payload: { ...task, text: newText } });
+    setIsEditing(false);
+  };
+
   return (
-    <ListItem>
-      <Text>{task.text}</Text>
-      <div>
-        <Button onClick={() => editFn(task)}>Edit</Button>
-        <Button $marginLeft onClick={() => deleteFn(task)}>
-          Delete
-        </Button>
-      </div>
-    </ListItem>
+    <Draggable draggableId={task.id} index={index}>
+      {({ draggableProps, dragHandleProps, innerRef }) => {
+        return (
+          <Wrapper {...draggableProps} {...dragHandleProps} ref={innerRef}>
+            {isEditing ? (
+              <Input onSubmit={handleEdit} />
+            ) : (
+              <span>{task.text}</span>
+            )}
+            <Menu task={task} onActiveEdit={() => setIsEditing(true)} />
+          </Wrapper>
+        );
+      }}
+    </Draggable>
   );
 };
 
-const ListItem = styled.div`
-  background-color: white;
-  padding: 20px;
-  border-radius: 5;
-  border: 1px solid #ccc;
-  width: 200;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Text = styled.span`
-  color: black;
-  font-size: 1.5rem;
-`;
-
-const Button = styled.button<{ $marginLeft?: boolean }>`
-  margin-left: ${({ $marginLeft }) => ($marginLeft ? "20px" : "0px")};
-  border: none;
-  background-color: grey;
-  border-radius: 5px;
-  padding: 8px 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  &:hover {
-    background-color: white;
-  }
-`;
+const Wrapper = styled.div({
+  width: "100%",
+  position: "relative",
+  padding: "12px 8px",
+  border: "1px solid #ccc",
+  background: "#fff",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: 10,
+  borderRadius: 5,
+});
 
 export default Task;

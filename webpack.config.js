@@ -64,14 +64,15 @@ module.exports = {
         ],
       },
       {
-        test: /\.png|svg|jpe?g|gif$/,
+        test: /\.png|mjs|svg|jpe?g|gif$/,
         use: ["file-loader"],
+        exclude: /node_modules/,
       },
     ],
   },
   devtool: "source-map",
   resolve: {
-    modules: [path.join(__dirname, "node_modules")],
+    modules: ["src", path.join(__dirname, "node_modules")],
     extensions: [".js", ".jsx", ".tsx", ".ts"],
   },
   resolveLoader: {
