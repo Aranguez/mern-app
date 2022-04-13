@@ -20,7 +20,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Aranguez/taskboard-app">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="src/assets/logo.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Task Go</h3>
@@ -163,4 +163,4 @@ Project Link: [https://github.com/Aranguez/taskboard-app](https://github.com/Ara
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555 -->
 
 [linkedin-url]: https://www.linkedin.com/in/leandro-aranguez-53345615b/
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: src/assets/app-screenshot.png
