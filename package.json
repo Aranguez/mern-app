@@ -49,6 +49,7 @@
     "@types/webpack-env": "^1.16.3",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
+    "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
@@ -59,6 +60,7 @@
     "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
+    "jest-transform-stub": "^2.0.0",
     "lint-staged": "^12.3.5",
     "mini-css-extract-plugin": "^2.6.0",
     "nodemon": "^2.0.15",
@@ -79,12 +81,20 @@
     "webpack-livereload-plugin": "^3.0.2"
   },
   "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
     "moduleDirectories": [
       "node_modules",
       "src"
     ],
     "moduleNameMapper": {
-      "\\.(css|scss)$": "identity-obj-proxy"
+      "^.+.(css|styl|less|sass|scss|png|jpg|svg|ttf|woff|woff2)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.ts?$": "ts-jest",
+      "^.+\\.(js|jsx)$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss|png|jpg|svg|ttf|woff|woff2)$": "jest-transform-stub",
+      "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest"
     }
   }
 }
