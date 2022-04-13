@@ -8,8 +8,7 @@ export type IBoardList = {
 };
 
 export enum BoardsType {
-  backlog = "backlog",
-  todo = "todo",
-  doing = "doing",
-  done = "done",
+  Todo = "Todo",
+  InProgress = "In progress",
+  Completed = "Completed",
 }

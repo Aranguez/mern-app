@@ -26,31 +26,39 @@ const Task: FC<Props> = ({ task, index }) => {
     <Draggable draggableId={task.id} index={index}>
       {({ draggableProps, dragHandleProps, innerRef }) => {
         return (
-          <Wrapper {...draggableProps} {...dragHandleProps} ref={innerRef}>
+          <$Wrapper {...draggableProps} {...dragHandleProps} ref={innerRef}>
             {isEditing ? (
-              <Input onSubmit={handleEdit} />
+              <>
+                <Input onSubmit={handleEdit} />
+              </>
             ) : (
-              <span>{task.text}</span>
+              <>
+                <$Title>{task.text}</$Title>
+              </>
             )}
             <Menu task={task} onActiveEdit={() => setIsEditing(true)} />
-          </Wrapper>
+          </$Wrapper>
         );
       }}
     </Draggable>
   );
 };
 
-const Wrapper = styled.div({
-  width: "100%",
+const $Wrapper = styled.div({
   position: "relative",
-  padding: "12px 8px",
-  border: "1px solid #ccc",
-  background: "#fff",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  marginBottom: 10,
-  borderRadius: 5,
+  marginBottom: 16,
+  padding: "18px 16px",
+  background: "#FFFFFF",
+  boxShadow: "4px 4px 20px #E0E1EE",
+  borderRadius: 10,
+});
+
+const $Title = styled.span({
+  fontWeight: 600,
+  fontSize: 16,
 });
 
 export default Task;

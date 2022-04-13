@@ -7,6 +7,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTasks } from "context/tasks-reducer";
 import { useClickOutside } from "utils/useClickOutside";
 
+import Dots from "assets/icons/dots.svg";
+
 type Props = {
   task: Itask;
   onActiveEdit: () => void;
@@ -28,7 +30,9 @@ const Menu: FC<Props> = ({ task, onActiveEdit }) => {
 
   return (
     <>
-      <button onClick={toggle}>...</button>
+      <$Button onClick={toggle}>
+        <$DotsMenu src={Dots}></$DotsMenu>
+      </$Button>
       <AnimatePresence>
         {isOpen && (
           <Dropdown
@@ -72,6 +76,23 @@ const Item = styled.button({
   ":hover": {
     background: "#ccc",
   },
+});
+
+const $Button = styled.button({
+  display: "flex",
+  alignItems: "center",
+  border: "none",
+  backgroundColor: "#F4F5F8",
+  borderRadius: 10,
+  padding: "2px 4px",
+  transition: "all .3s ease",
+  ":hover": {
+    backgroundColor: "#E4E4E4",
+  },
+});
+
+const $DotsMenu = styled.img({
+  padding: 12,
 });
 
 export default Menu;

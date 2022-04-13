@@ -1,17 +1,21 @@
 import { FC } from "react";
 
 import Board from "components/Board";
-import Input from "components/Input";
+// import Input from "components/Input";
 
-import { Itask, ItasksList } from "types/task.model";
+import { /*Itask,*/ ItasksList } from "types/task.model";
 import { BoardsType } from "types/board.model";
 
 import styled from "styled-components";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useTasks } from "context/tasks-reducer";
 
-import { v4 as uuidv4 } from "uuid";
-import { boards } from "data/boards";
+// import { v4 as uuidv4 } from "uuid";
+// import { boards } from "data/boards";
+import Sidebar from "components/Sidebar";
+
+import userImage from "assets/user.png";
+import bell from "assets/icons/bell.svg";
 
 const TaskBoard: FC = () => {
   const [{ tasks }, dispatch] = useTasks();
@@ -110,42 +114,105 @@ const TaskBoard: FC = () => {
     }
   };
 
-  const handleSubmit = (text: string) => {
-    const newTask: Itask = {
-      id: uuidv4(),
-      text,
-      board: boards[BoardsType.backlog],
-    };
+  // const handleSubmit = (text: string) => {
+  //   const newTask: Itask = {
+  //     id: uuidv4(),
+  //     text,
+  //     board: boards[BoardsType.Todo],
+  //   };
 
-    dispatch({ type: "ADD", payload: newTask });
-  };
+  //   dispatch({ type: "ADD", payload: newTask });
+  // };
 
   return (
-    <Container>
-      <h1>Taskboard</h1>
+    <$Flex>
+      <Sidebar />
 
-      <Input withPlus onSubmit={handleSubmit} />
+      <$MainPanel>
+        <div style={{ display: "inline-block" }}>
+          <div style={{ display: "flex" }}>
+            <$SearchInput
+              type="text"
+              name="input"
+              id="input"
+              placeholder="Buscar tarea"
+            />
+            <$IconWrapper>
+              <img src={bell} alt="notification-bell-img" />
+              <span></span>
+            </$IconWrapper>
+            <$ProfileImg></$ProfileImg>
+          </div>
 
-      <Flex>
-        <DragDropContext onDragEnd={handleDragEnd}>
-          <Board name={BoardsType.backlog} />
-          <Board name={BoardsType.todo} />
-          <Board name={BoardsType.doing} />
-          <Board name={BoardsType.done} />
-        </DragDropContext>
-      </Flex>
-    </Container>
+          <h1>Tareas Activas</h1>
+          {/* <Input withPlus onSubmit={handleSubmit} /> */}
+
+          <$Flex>
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <Board name={BoardsType.Todo} color="#3FD4DC" />
+              <Board name={BoardsType.InProgress} color="#FF876C" />
+              <Board name={BoardsType.Completed} color="#E169FF" />
+            </DragDropContext>
+          </$Flex>
+        </div>
+      </$MainPanel>
+    </$Flex>
   );
 };
 
-const Container = styled.div({
-  width: "80%",
-  maxWidth: 1600,
-  margin: "0 auto",
+const $Flex = styled.div({
+  display: "flex",
 });
 
-const Flex = styled.div({
+const $MainPanel = styled.div({
+  padding: 30,
+});
+
+const $SearchInput = styled.input({
+  backgroundColor: "#F4F5F8",
+  width: 574,
+  height: 44,
+  border: "2px solid #F4F5F8",
+  padding: "12px 30px",
+  borderRadius: 10,
+  fontFamily: "Poppins",
+  fontSize: 14,
+  ":focus": {
+    border: "2px solid #5D68FE",
+    outline: "none",
+  },
+});
+
+const $IconWrapper = styled.div({
+  backgroundColor: "#F4F5F8",
+  position: "relative",
+  width: 45,
+  height: 45,
+  borderRadius: 10,
+  padding: 14,
   display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  marginLeft: 30,
+  "> span": {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    width: 6,
+    height: 6,
+    backgroundColor: "#FF7070",
+    borderRadius: "50%",
+  },
+});
+
+const $ProfileImg = styled.div({
+  width: 45,
+  height: 45,
+  borderRadius: 10,
+  marginLeft: 10,
+  backgroundImage: `url(${userImage})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
 });
 
 export default TaskBoard;

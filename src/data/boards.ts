@@ -2,20 +2,16 @@ import { BoardsType, Iboard } from "types/board.model";
 import { v4 as uuidv4 } from "uuid";
 
 export const boards: { [key: string]: Iboard } = {
-  backlog: {
+  Todo: {
     id: uuidv4(),
-    name: BoardsType.backlog,
+    name: BoardsType.Todo,
   },
-  todo: {
+  InProgress: {
     id: uuidv4(),
-    name: BoardsType.todo,
+    name: BoardsType.InProgress,
   },
-  doing: {
+  Completed: {
     id: uuidv4(),
-    name: BoardsType.doing,
-  },
-  done: {
-    id: uuidv4(),
-    name: BoardsType.done,
+    name: BoardsType.Completed,
   },
 };
